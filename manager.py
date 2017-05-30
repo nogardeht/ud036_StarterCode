@@ -38,7 +38,7 @@ group.add_argument('-r', action='store', type=int, required=False,
 
 # This will be used to add a movie
 group.add_argument('-a', action='store_true', required=False,
-                   help='Adds a movie to the database.')
+                   help='Adds a movie to the database (Interactive).')
 
 # Used to render the website and launch it through the default browser
 group.add_argument('-w', action='store_true', required=False,
@@ -78,6 +78,7 @@ if (not inargs['c']):
 # Acting depending on the arguments used
 if (inargs['l']):  # List the movies on console
     print(tempMoviesStore)
+
 elif (inargs['a']):  # Add a new movie
     # Initializing empty variables
     movie_title = ""
@@ -159,7 +160,8 @@ database or press N to cancel: ")
                                           movie_storyline, poster_imageUrl, trailer_youtubeUrl, movie_language, movie_rate))
     # This saves the database with the modifications
     tempMoviesStore.save_movies(inargs['d'])
-elif (inargs['r'] is not None):  # Remove a movie
+
+elif (inargs['r'] is not None):  # Removes a movie
     # We have to check if the provided index is a valid one
     if (inargs['r'] > (len(tempMoviesStore) - 1) or inargs['r'] < 0):
         print('The provided index number is invalid')
@@ -169,6 +171,7 @@ elif (inargs['r'] is not None):  # Remove a movie
     tempMoviesStore.save_movies(inargs['d'])
     print tempMovieName + ' was deleted and the database was saved.'
     # tempMoviesStore.save_movies(inargs['d'])
+
 elif (inargs['c']):  # Add a new movie
     # Try to create the new database
     try:
@@ -177,5 +180,6 @@ elif (inargs['c']):  # Add a new movie
     except Exception:
         print('There was a problem creating the new database.')
         raise
+
 elif (inargs['w']):  # Load the website
     print(fresh_tomatoes.open_movies_page(tempMoviesStore.get_movies()))
