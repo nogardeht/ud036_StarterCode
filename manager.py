@@ -10,7 +10,7 @@ import media  # This custom module contains custom classes to store our data
 
 # We customize the argument parser for our program
 # It will display an examples section at the end
-parser = argparse.ArgumentParser(prog='movieman.py',
+parser = argparse.ArgumentParser(prog='manager.py',
                                  description='Movie database manager', epilog='Example: \
     python manager.py -d testdb.csv -l')
 

@@ -20,7 +20,7 @@ called with -h or --help as per standard.
 
 The information from the help is the following:
 --------------------------------------------------------------------------------
-usage: movieman.py [-h] [-d file] (-l | -r index | -a | -w | -c) [--version]
+usage: manager.py [-h] [-d file] (-l | -r index | -a | -w | -c) [--version]
 
 Movie database manager
 
