@@ -112,7 +112,7 @@ hour, 10 minutes and 30 seconds: 70:30)--> ')
             print "Movie's poster image url cannot be empty."
         # Validates that the format of the url, can be improved, \
         # validation can be done directly on the class and raise and exception
-        elif (not re.match('(\b(https?)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]',
+        elif (not re.match('(\b(https?)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]',  # NOQA
                            poster_imageUrl)):
             print ("Not a valid URL")
             poster_imageUrl = ""
@@ -122,7 +122,7 @@ hour, 10 minutes and 30 seconds: 70:30)--> ')
             print "Movie's youtube trailer url cannot be empty."
         # Validates that the format of the url, can be improved, \
         # validation can be done directly on the class and raise and exception
-        elif (not re.match('(\b(https?)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]',
+        elif (not re.match('(\b(https?)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]',  # NOQA
                            trailer_youtubeUrl)):
             print ("Not a valid URL")
             trailer_youtubeUrl = ""
@@ -135,7 +135,8 @@ hour, 10 minutes and 30 seconds: 70:30)--> ')
         --> '.format(media.Movie.VALID_RATINGS))
         if (movie_rate == ""):
             print "Movie's rate cannot be empty"
-        elif (movie_rate not in media.Movie.VALID_RATINGS):  # Validates the rate
+        # Validates the rate
+        elif (movie_rate not in media.Movie.VALID_RATINGS):
             print "Provided rate is not valid."
             movie_rate = ""
     # Confirmation before saving
@@ -147,7 +148,8 @@ hour, 10 minutes and 30 seconds: 70:30)--> ')
     Youtube trailer URL: {4}\n \
     Language: {5}\n \
     Rate: {6}\n".format(movie_title, duration, movie_storyline,
-                        poster_imageUrl, trailer_youtubeUrl, movie_language, movie_rate))
+                        poster_imageUrl, trailer_youtubeUrl,
+                        movie_language, movie_rate))
 
     confirmation = ""
     while (confirmation == ""):
@@ -157,7 +159,9 @@ database or press N to cancel: ")
             print("Please enter Y or N")
             confirmation = ""
     tempMoviesStore.add_movie(media.Movie(movie_title, duration,
-                                          movie_storyline, poster_imageUrl, trailer_youtubeUrl, movie_language, movie_rate))
+                                          movie_storyline, poster_imageUrl,
+                                          trailer_youtubeUrl, movie_language,
+                                          movie_rate))
     # This saves the database with the modifications
     tempMoviesStore.save_movies(inargs['d'])
 

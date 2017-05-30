@@ -25,12 +25,14 @@ Available properties:
     storyline: A brief description of the movie
     poster_image_url: A url to the image of the poster
     trailer_youtube_url: A url to the trailer in youtube
-    movie_rate: The rate of the movies. Only ratings of property VALID_RATINGS are valid.
+    movie_rate: The rate of the movies. Only ratings of property
+                VALID_RATINGS are valid.
     VALID_RATINGS: The valid ratings for any movie of this class"""
     VALID_RATINGS = ["G", "PG", "PG-13", "R"]
 
     def __init__(self, movie_title, duration, movie_storyline,
-                 poster_imageUrl, trailer_youtubeUrl, movie_language, movie_rate):
+                 poster_imageUrl, trailer_youtubeUrl, movie_language,
+                 movie_rate):
         Video.__init__(self, movie_title, duration, movie_language)
         self.storyline = movie_storyline
         self.poster_image_url = poster_imageUrl
@@ -46,7 +48,8 @@ Available properties:
 
     def __str__(self):
         return 'Movie: {0}, Duration: {1}, Lang: {2}'.format(self.title,
-                                                             self.duration, self.language)
+                                                             self.duration,
+                                                             self.language)
 
 
 class MoviesStore(object):
@@ -55,15 +58,22 @@ Available properties:
     moviesList: A list with all the movies (Internal use)
     len: The amount of movies stored on this class (Internal use)
 Available methods:
-    load_movies(csvpath): This will automatically load all the movies from a provided csv file path into moviesList
-    add_movie(movie): Adds a movie to moviesList, the parameter should provide an object of type Movie
-    del_movie(index): Removes a movie from moviesList based on its index, the input parameter is an integer
-    get_movie(index): Returns an object of type Movie with the movie on the index position provided of moviesList
+    load_movies(csvpath): This will automatically load all the movies from a
+                          provided csv file path into moviesList
+    add_movie(movie): Adds a movie to moviesList, the parameter should provide
+                      an object of type Movie
+    del_movie(index): Removes a movie from moviesList based on its index, the
+                      input parameter is an integer
+    get_movie(index): Returns an object of type Movie with the movie on the
+                      index position provided of moviesList
     get_movies(): Returns the whole list of movies
-    save_movies(csvpath): Saves the list of moviesList to a provided csv file path
+    save_movies(csvpath): Saves the list of moviesList to a provided csv
+                          file path
     create_moviesdb(csvpath): Creates a empty file to be used as a database
 Comments
-    1. __str__ returns a formated summary of the movies in moviesList, the index is indicated in that summary in order to facilitate the use of other functions.
+    1. __str__ returns a formated summary of the movies in moviesList, the
+               index is indicated in that summary in order to facilitate
+               the use of other functions.
     2. __len__ returns an integer that is the amount of movies in moviesList"""
 
     def __init__(self):
@@ -122,11 +132,14 @@ Language: "{2}", Rate: "{3}"'.format(movie.title, movie.duration,
         if len(self) > 0:
             with open(csvpath, 'wb') as csvfile:
                 moviesWriter = csv.writer(csvfile, delimiter=',',
-                                          quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                                          quotechar='"',
+                                          quoting=csv.QUOTE_MINIMAL)
                 for movie in self.get_movies():
                     moviesWriter.writerow([movie.title, movie.duration,
-                                           movie.storyline, movie.poster_image_url,
-                                           movie.trailer_youtube_url, movie.language, movie.rate])
+                                           movie.storyline,
+                                           movie.poster_image_url,
+                                           movie.trailer_youtube_url,
+                                           movie.language, movie.rate])
 
     def create_moviesdb(self, csvpath):
         open(csvpath, 'a')
